@@ -132,7 +132,7 @@ fn parse_int(token: TokenTree, negative: bool) -> (Syntax, Span) {
     let n: i64 = token_str.parse().unwrap_or_else(|err| {
         emit_error!(token.span(), "invalid number literal ({})", err);
     });
-    let n = if negative { n * -1 } else { n };
+    let n = if negative { -n } else { n };
     (Syntax::Int(n), token.span())
 }
 
@@ -166,7 +166,6 @@ where
 mod tests {
     use super::*;
     use bitcoin::blockdata::opcodes::all as opcodes;
-    use proc_macro2::TokenTree;
     use quote::quote;
 
     #[test]

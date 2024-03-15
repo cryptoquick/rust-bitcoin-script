@@ -1,5 +1,6 @@
 #![feature(proc_macro_hygiene)]
 
+use bitcoin::hashes::hex::ToHex;
 use bitcoin_script::bitcoin_script;
 
 #[test]
@@ -35,10 +36,7 @@ fn lnhance() {
     };
 
     assert_eq!(
-        script.to_bytes(),
-        vec![
-            179, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 42, 180, 16, 162, 240, 224,
-            208, 192, 176, 160, 144, 128, 112, 96, 80, 64, 48, 32, 16, 177
-        ]
+        script.to_hex(),
+        "b3100102030405060708090a0b0c0d0e0f2ab410a2f0e0d0c0b0a0908070605040302010b1"
     );
 }

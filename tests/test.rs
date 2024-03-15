@@ -24,11 +24,13 @@ fn fixture() {
 
 #[test]
 fn lnhance() {
+    let s = hex::decode("a2f0e0d0c0b0a0908070605040302010").unwrap();
+
     let script = bitcoin_script! {
         OP_CHECKTEMPLATEVERIFY
         0x0102030405060708090a0b0c0d0e0f2a
         OP_CHECKSIGFROMSTACKVERIFY
-        0xa2f0e0d0c0b0a0908070605040302010
+        <s>
         OP_CLTV
     };
 
